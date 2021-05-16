@@ -13,21 +13,23 @@ export default class App extends LightningElement {
     connectedCallback() {
         if (typeof acquireVsCodeApi === 'function') {
             this.vscode = acquireVsCodeApi(); // eslint-disable-line
-            window.addEventListener('message', this.handleIncomingMessage);
+            window.addEventListener('message', (event) => {
+                let data = event.data;
+                // === will only be sent when first opened ===
+                if(data.showSettings) {
+                    this.showSettings = true;
+                } else if(data.showBulkLoader) {
+                    this.showBulkLoader = true;
+                } else if(data.showQueryEditor) {
+                    this.showQueryEditor = true;
+                }
+                // ===========================================
+                this.currentMessageEvent = event;
+            });
         }
     }
 
-    handleIncomingMessage(event) {
-        let data = event.data;
-        // === will only be sent when first opened ===
-        if(data.showSettings) {
-            this.showSettings = true;
-        } else if(data.showBulkLoader) {
-            this.showBulkLoader = true;
-        } else if(data.showQueryEditor) {
-            this.showQueryEditor = true;
-        }
-        // ===========================================
-        this.currentMessageEvent = event;
+    sendMessage(event) {
+        this.vscode.postMessage(event.detail.data);
     }
 }

@@ -1,3 +1,91 @@
 <template>
-    hello {event.data}
+    <legend>
+        ForceCode Settings for {currentUserName}
+    </legend>>
+    <div style="text-align:center;">
+        <button type="button" onclick={saveSettings}>Save</button>
+        <template if:true={showRemoveConfig}>
+            <button type="button" onclick={removeConfig}>Remove Config Folder</button>
+        </template>
+    </div>
+    <div>
+        Change settings for:&nbsp;
+        <select id="selectedUser" onchange={changeUserName}>
+            <option value={currentUserName}>{currentUserName}</option>
+            <template for:each={userNames} for:item="userName">
+                <option value={userName} key={userName}>{userName}</option>
+            </template>
+        </select>
+        <!-- Options -->
+        <div>
+            <label for="alias">
+                Alias
+            </label>
+            <input type="text" name="alias" id="alias" value={currentSettings.alias} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="apiVersion">
+                Api Version
+            </label>
+            <input type="number" name="apiVersion" id="apiVersion" value={currentSettings.apiVersion} onchange={changeSetting} />
+        </div>
+        <!-- TODO add deployOptions -->
+        <div>
+            <label for="isDeveloperEdition">
+                Developer Edition Org
+            </label>
+            <input type="checkbox" name="isDeveloperEdition" id="isDeveloperEdition" value={currentSettings.isDeveloperEdition} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="overwritePackageXML">
+                Overwrite package.xml
+            </label>
+            <input type="checkbox" name="overwritePackageXML" id="overwritePackageXML" value={currentSettings.overwritePackageXML} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="poll">
+                Poll
+            </label>
+            <input type="number" name="poll" id="poll" value={currentSettings.poll} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="pollTimeout">
+                Poll Timeout
+            </label>
+            <input type="number" name="pollTimeout" id="pollTimeout" value={currentSettings.pollTimeout} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="prefix">
+                Namespace Prefix
+            </label>
+            <input type="text" name="prefix" id="prefix" value={currentSettings.prefix} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="showTestCoverage">
+                Show Test Coverage
+            </label>
+            <input type="checkbox" name="showTestCoverage" id="showTestCoverage" value={currentSettings.showTestCoverage} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="spaDist">
+                spaDist
+            </label>
+            <input type="text" name="spaDist" id="spaDist" value={currentSettings.spaDist} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="src">
+                Source folder
+            </label>
+            <input type="text" name="src" id="src" value={currentSettings.src} onchange={changeSetting} />
+        </div>
+        <div>
+            <label for="staticResourceCacheControl">
+                Static Resource Cache Control
+            </label>
+            <select id="staticResourceCacheControl" name="staticResourceCacheControl" onchange={changeSetting}>
+                <option value="Private" >Private</option>
+                <option value="Public" >Public</option>
+            </select>
+        </div>
+    </div>
 </template>

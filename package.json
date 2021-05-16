@@ -1,9 +1,10 @@
 {
     "name": "forcecode-ui",
     "description": "The UI Pieces of ForceCode",
-    "version": "0.0.1",
+    "version": "0.0.11",
     "author": "Brett Wagner",
-    "bugs": "https://github.com/Brett Wagner/forcecode-ui/issues",
+    "bugs": "https://github.com/daishi4u/forcecode-ui/issues",
+    "main": "dist/",
     "dependencies": {
         "compression": "^1.7.4",
         "express": "^4.17.1",

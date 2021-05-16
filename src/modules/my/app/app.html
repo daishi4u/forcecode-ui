@@ -1,11 +1,11 @@
 <template>
     <template if:true={showSettings}>
-        <my-settings event={currentMessageEvent}></my-settings>
+        <my-settings event={currentMessageEvent} onsendmessage={sendMessage}></my-settings>
     </template>
     <template if:true={showBulkLoader}>
-        
+        BULK LOADER
     </template>
     <template if:true={showQueryEditor}>
-        
+        QUERY EDITOR
     </template>
 </template>
